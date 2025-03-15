@@ -44,7 +44,24 @@ Notifications::Notifications(DisplayApp* app,
     if (notification.category == Controllers::NotificationManager::Categories::IncomingCall) {
       motorController.StartRinging();
     } else {
-      motorController.StartRinging();
+      const char *msg = notification.Title();
+
+      if (isDoorbell(msg)) {
+        motorController.StartVibrationFor(500);
+      } else if (isIntercom(msg)) {
+        motorController.StartVibrationFor(700);
+      } else if (isAlarm(msg)) {
+        motorController.StartVibrationFor(1000);
+      } else if (isSos(msg)) {
+        motorController.StartVibrationFor(1500);
+      } else if (isSensor(msg)) {
+        motorController.StartVibrationFor(300);
+      } else if (isSystem(msg)) {
+        motorController.StartVibrationFor(180);
+      } else {
+        motorController.StartVibrationFor(50);
+      }
+
       // motorController.RunForDuration(35);
     }
 
@@ -68,6 +85,55 @@ Notifications::~Notifications() {
   motorController.StopRinging();
   lv_obj_clean(lv_scr_act());
 }
+
+bool Notifications::isDoorbell(const char *msg) {
+  // char startsWith[10];
+  // strncpy(startsWith, msg, 9);
+
+  // return ((strcmp(msg, "doorbell") == 0) || (strcmp(msg, "doorbell\r") == 0) || (strcmp(startsWith, "doorbell") == 0));
+  return (strcmp(msg, "doorbell\r") == 0) || (strcmp(msg, "doorbell") == 0);
+}
+
+bool Notifications::isIntercom(const char *msg) {
+  // char startsWith[10];
+  // strncpy(startsWith, msg, 9);
+
+  // return ((strcmp(msg, "intercom") == 0) || (strcmp(msg, "intercom\r") == 0) || (strcmp(startsWith, "intercom") == 0));
+  return (strcmp(msg, "intercom\r") == 0) || (strcmp(msg, "intercom") == 0);
+}
+
+bool Notifications::isAlarm(const char *msg) {
+  // char startsWith[7];
+  // strncpy(startsWith, msg, 6);
+
+  // return ((strcmp(msg, "alarm") == 0) || (strcmp(msg, "alarm\r") == 0) || (strcmp(startsWith, "alarm") == 0));
+  return (strcmp(msg, "alarm\r") == 0) || (strcmp(msg, "alarm") == 0);
+}
+
+bool Notifications::isSos(const char *msg) {
+  // char startsWith[5];
+  // strncpy(startsWith, msg, 4);
+
+  // return ((strcmp(msg, "sos") == 0) || (strcmp(msg, "sos\r") == 0) || (strcmp(startsWith, "sos") == 0));
+  return (strcmp(msg, "sos\r") == 0) || (strcmp(msg, "sos") == 0);
+}
+
+bool Notifications::isSensor(const char *msg) {
+  // char startsWith[8];
+  // strncpy(startsWith, msg, 7);
+
+  // return ((strcmp(msg, "sensor") == 0) || (strcmp(msg, "sensor\r") == 0) || (strcmp(startsWith, "sensor") == 0));
+  return (strcmp(msg, "sensor\r") == 0) || (strcmp(msg, "sensor") == 0);
+}
+
+bool Notifications::isSystem(const char *msg) {
+  // char startsWith[8];
+  // strncpy(startsWith, msg, 7);
+
+  // return ((strcmp(msg, "system") == 0) || (strcmp(msg, "system\r") == 0) || (strcmp(startsWith, "system") == 0));
+  return (strcmp(msg, "system\r") == 0) || (strcmp(msg, "system") == 0);
+}
+
 
 void Notifications::Refresh() {
   if (mode == Modes::Preview && timeoutLine != nullptr) {

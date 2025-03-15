@@ -32,6 +32,12 @@ namespace Pinetime {
         void Refresh() override;
         bool OnTouchEvent(Pinetime::Applications::TouchEvents event) override;
         void DismissToBlack();
+        bool isDoorbell(const char *msg);
+        bool isIntercom(const char *msg);
+        bool isAlarm(const char *msg);
+        bool isSos(const char *msg);
+        bool isSensor(const char *msg);
+        bool isSystem(const char *msg);
         void OnPreviewInteraction();
         void OnPreviewDismiss();
 
