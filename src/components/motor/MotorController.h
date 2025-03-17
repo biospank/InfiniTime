@@ -15,7 +15,7 @@ namespace Pinetime {
       void RunForDuration(uint8_t motorDuration);
       void MyRunForDuration(uint16_t motorDuration);
       void StartRinging();
-      void StartVibrationFor(uint16_t motorDuration);
+      void StartVibrationFor(uint16_t motorDuration, uint16_t timeLapse);
       void StopRinging();
 
     private:

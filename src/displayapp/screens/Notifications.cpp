@@ -47,20 +47,21 @@ Notifications::Notifications(DisplayApp* app,
       const char *msg = notification.Title();
 
       if (isDoorbell(msg)) {
-        motorController.StartVibrationFor(500);
+        motorController.StartVibrationFor(500, 2000);
       } else if (isIntercom(msg)) {
-        motorController.StartVibrationFor(700);
+        motorController.StartVibrationFor(1000, 3000);
       } else if (isAlarm(msg)) {
-        motorController.StartVibrationFor(1000);
+        motorController.StartVibrationFor(500, 1000);
       } else if (isSos(msg)) {
-        motorController.StartVibrationFor(1500);
+        motorController.StartVibrationFor(1000, 1500);
       } else if (isSensor(msg)) {
-        motorController.StartVibrationFor(300);
+        motorController.StartVibrationFor(200, 500);
       } else if (isSystem(msg)) {
-        motorController.StartVibrationFor(180);
-      } else {
-        motorController.StartVibrationFor(50);
+        motorController.StartVibrationFor(50, 500);
       }
+      // } else {
+      //   motorController.RunForDuration(35);
+      // }
 
       // motorController.RunForDuration(35);
     }
