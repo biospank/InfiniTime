@@ -38,6 +38,8 @@ namespace Pinetime {
         bool isSos(const char *msg);
         bool isSensor(const char *msg);
         bool isSystem(const char *msg);
+        bool isArm(const char *msg);
+        bool isDisarm(const char *msg);
         void OnPreviewInteraction();
         void OnPreviewDismiss();
 

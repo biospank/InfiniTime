@@ -58,6 +58,10 @@ Notifications::Notifications(DisplayApp* app,
         motorController.StartVibrationFor(200, 500);
       } else if (isSystem(msg)) {
         motorController.StartVibrationFor(50, 500);
+      } else if (isArm(msg)) {
+        motorController.RunForDuration(50);
+      } else if (isDisarm(msg)) {
+        motorController.RunForDuration(50);
       }
       // } else {
       //   motorController.RunForDuration(35);
@@ -135,6 +139,13 @@ bool Notifications::isSystem(const char *msg) {
   return (strcmp(msg, "system\r") == 0) || (strcmp(msg, "system") == 0);
 }
 
+bool Notifications::isArm(const char *msg) {
+  return (strcmp(msg, "arm") == 0);
+}
+
+bool Notifications::isDisarm(const char *msg) {
+  return (strcmp(msg, "disarm") == 0);
+}
 
 void Notifications::Refresh() {
   if (mode == Modes::Preview && timeoutLine != nullptr) {
