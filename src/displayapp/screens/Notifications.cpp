@@ -49,7 +49,7 @@ Notifications::Notifications(DisplayApp* app,
       if (isDoorbell(msg)) {
         motorController.StartVibrationFor(500, 2000);
       } else if (isIntercom(msg)) {
-        motorController.StartVibrationFor(1000, 3000);
+        motorController.StartVibrationFor(1000, 2000);
       } else if (isAlarm(msg)) {
         motorController.StartVibrationFor(500, 1000);
       } else if (isSos(msg)) {
