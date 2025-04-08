@@ -53,7 +53,7 @@ Notifications::Notifications(DisplayApp* app,
       } else if (isAlarm(msg)) {
         motorController.StartVibrationFor(500, 1000);
       } else if (isSos(msg)) {
-        motorController.StartVibrationFor(1000, 1500);
+        motorController.StartVibrationFor(200, 500);
       } else if (isSensor(msg)) {
         motorController.StartVibrationFor(200, 500);
       } else if (isSystem(msg)) {
