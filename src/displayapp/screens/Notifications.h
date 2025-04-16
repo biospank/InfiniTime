@@ -36,10 +36,11 @@ namespace Pinetime {
         bool isIntercom(const char *msg);
         bool isAlarm(const char *msg);
         bool isSos(const char *msg);
-        bool isSensor(const char *msg);
+        bool isBaby(const char *msg);
         bool isSystem(const char *msg);
         bool isArm(const char *msg);
         bool isDisarm(const char *msg);
+        bool isHome(const char *msg);
         void OnPreviewInteraction();
         void OnPreviewDismiss();
 

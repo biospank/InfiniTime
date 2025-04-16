@@ -54,13 +54,15 @@ Notifications::Notifications(DisplayApp* app,
         motorController.StartVibrationFor(500, 1000);
       } else if (isSos(msg)) {
         motorController.StartVibrationFor(200, 500);
-      } else if (isSensor(msg)) {
-        motorController.StartVibrationFor(200, 500);
+      } else if (isBaby(msg)) {
+        motorController.StartVibrationFor(300, 500);
       } else if (isSystem(msg)) {
         motorController.StartVibrationFor(50, 500);
       } else if (isArm(msg)) {
         motorController.RunForDuration(50);
       } else if (isDisarm(msg)) {
+        motorController.RunForDuration(50);
+      } else if (isHome(msg)) {
         motorController.RunForDuration(50);
       }
       // } else {
@@ -123,12 +125,8 @@ bool Notifications::isSos(const char *msg) {
   return (strcmp(msg, "sos\r") == 0) || (strcmp(msg, "sos") == 0);
 }
 
-bool Notifications::isSensor(const char *msg) {
-  // char startsWith[8];
-  // strncpy(startsWith, msg, 7);
-
-  // return ((strcmp(msg, "sensor") == 0) || (strcmp(msg, "sensor\r") == 0) || (strcmp(startsWith, "sensor") == 0));
-  return (strcmp(msg, "sensor\r") == 0) || (strcmp(msg, "sensor") == 0);
+bool Notifications::isBaby(const char *msg) {
+  return (strcmp(msg, "baby") == 0);
 }
 
 bool Notifications::isSystem(const char *msg) {
@@ -145,6 +143,10 @@ bool Notifications::isArm(const char *msg) {
 
 bool Notifications::isDisarm(const char *msg) {
   return (strcmp(msg, "disarm") == 0);
+}
+
+bool Notifications::isHome(const char *msg) {
+  return (strcmp(msg, "home") == 0);
 }
 
 void Notifications::Refresh() {
