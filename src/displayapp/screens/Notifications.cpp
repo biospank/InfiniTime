@@ -56,7 +56,7 @@ Notifications::Notifications(DisplayApp* app,
         motorController.StartVibrationFor(200, 500);
       } else if (isBaby(msg)) {
         motorController.StartVibrationFor(300, 500);
-      } else if (isSystem(msg)) {
+      } else if (isWater(msg)) {
         motorController.StartVibrationFor(50, 500);
       } else if (isArm(msg)) {
         motorController.RunForDuration(50);
@@ -64,10 +64,9 @@ Notifications::Notifications(DisplayApp* app,
         motorController.RunForDuration(50);
       } else if (isHome(msg)) {
         motorController.RunForDuration(50);
+      } else {
+        motorController.RunForDuration(35);
       }
-      // } else {
-      //   motorController.RunForDuration(35);
-      // }
 
       // motorController.RunForDuration(35);
     }
@@ -127,6 +126,10 @@ bool Notifications::isSos(const char *msg) {
 
 bool Notifications::isBaby(const char *msg) {
   return (strcmp(msg, "baby") == 0);
+}
+
+bool Notifications::isWater(const char *msg) {
+  return (strcmp(msg, "water") == 0);
 }
 
 bool Notifications::isSystem(const char *msg) {
