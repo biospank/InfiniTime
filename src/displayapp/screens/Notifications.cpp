@@ -56,7 +56,7 @@ Notifications::Notifications(DisplayApp* app,
         motorController.StartVibrationFor(200, 500);
       } else if (isBaby(msg)) {
         motorController.StartVibrationFor(300, 500);
-      } else if (isWater(msg)) {
+      } else if (isLeak(msg)) {
         motorController.StartVibrationFor(50, 500);
       } else if (isArm(msg)) {
         motorController.RunForDuration(50);
@@ -128,8 +128,8 @@ bool Notifications::isBaby(const char *msg) {
   return (strcmp(msg, "baby") == 0);
 }
 
-bool Notifications::isWater(const char *msg) {
-  return (strcmp(msg, "water") == 0);
+bool Notifications::isLeak(const char *msg) {
+  return (strcmp(msg, "leak") == 0);
 }
 
 bool Notifications::isSystem(const char *msg) {
