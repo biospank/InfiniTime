@@ -478,9 +478,11 @@ void SystemTask::HandleButtonAction(Controllers::ButtonActions action) {
       }
       break;
     case Actions::DoubleClick:
+      this->nimble().alertService().MuteIncomingCall();
       displayApp.PushMessage(Applications::Display::Messages::ButtonDoubleClicked);
       break;
     case Actions::LongPress:
+      this->nimble().alertService().AcceptIncomingCall();
       displayApp.PushMessage(Applications::Display::Messages::ButtonLongPressed);
       break;
     case Actions::LongerPress:
