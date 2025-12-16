@@ -39,6 +39,7 @@ namespace Pinetime {
         bool isBaby(const char *msg);
         bool isLeak(const char *msg);
         bool isSystem(const char *msg);
+        bool isNoAlert(const char *msg);
         bool isArm(const char *msg);
         bool isDisarm(const char *msg);
         bool isHome(const char *msg);

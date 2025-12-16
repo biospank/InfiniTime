@@ -58,6 +58,8 @@ Notifications::Notifications(DisplayApp* app,
         motorController.StartVibrationFor(300, 500);
       } else if (isLeak(msg)) {
         motorController.StartVibrationFor(50, 500);
+      } else if (isNoAlert(msg)) {
+        motorController.StartVibrationFor(500, 500);
       } else if (isArm(msg)) {
         motorController.RunForDuration(50);
       } else if (isDisarm(msg)) {
@@ -138,6 +140,10 @@ bool Notifications::isSystem(const char *msg) {
 
   // return ((strcmp(msg, "system") == 0) || (strcmp(msg, "system\r") == 0) || (strcmp(startsWith, "system") == 0));
   return (strcmp(msg, "system\r") == 0) || (strcmp(msg, "system") == 0);
+}
+
+bool Notifications::isNoAlert(const char *msg) {
+  return (strcmp(msg, "noalert\r") == 0) || (strcmp(msg, "noalert") == 0);
 }
 
 bool Notifications::isArm(const char *msg) {
