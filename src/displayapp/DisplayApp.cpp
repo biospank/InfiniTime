@@ -454,6 +454,7 @@ void DisplayApp::Refresh() {
           appStackDirections.Reset();
           returnAppStack.Reset();
         }
+        motorController.RunForDuration(50);
         break;
       case Messages::ButtonLongerPressed:
         // Create reboot app and open it instead
